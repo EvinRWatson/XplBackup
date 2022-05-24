@@ -9,8 +9,6 @@ using namespace std;
 int ReadEntries()
 {
 	string fname = "entries.csv";
-	cout << "Enter the file name: ";
-	cin >> fname;
 
 	vector<vector<string>> content;
 	vector<string> row;

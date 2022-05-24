@@ -3,13 +3,7 @@
 
 #include <iostream>
 #include "XplLib.h"
-
-void DisplayCommandError(char* argv)
-{
-    std::string ErrorMessage = "Command not recognized: ";
-    ErrorMessage.append(argv);
-    std::cout << ErrorMessage << std::endl;
-}
+#include "ErrorFunc.h"
 
 bool EvaluateArgument(char* argv)
 {
@@ -26,9 +20,13 @@ bool EvaluateArgument(char* argv)
         std::cout << "Reading file..." << std::endl;
         ReadEntries();
     }
+    else if (strcmp(argv, "init") == 0)
+    {
+        std::cout << "Creating file..." << std::endl;
+    }
     else
     {
-        DisplayCommandError(argv);
+        DisplayArgumentError(argv);
         return false;
     }
 
@@ -40,7 +38,6 @@ int main(int argc, char* argv[])
     int count = 1;
     bool ValidCommand = true;
 
-    // Display each command-line argument.
     while (ValidCommand == true && count < argc)
     {
         ValidCommand = EvaluateArgument(argv[count]);
