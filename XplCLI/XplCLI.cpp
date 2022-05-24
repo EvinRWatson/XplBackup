@@ -2,8 +2,8 @@
 //
 
 #include <iostream>
-#include "XplLib.h"
-#include "ErrorFunc.h"
+#include "..\XplLib\FileOps.h"
+#include "..\XplLib\ErrorFunc.h"
 
 bool EvaluateArgument(char* argv)
 {
@@ -18,7 +18,7 @@ bool EvaluateArgument(char* argv)
     else if (strcmp(argv, "status") == 0)
     {
         std::cout << "Reading file..." << std::endl;
-        ReadEntries();
+        PrintEntriesFile(ReadEntriesFile());
     }
     else if (strcmp(argv, "init") == 0)
     {
