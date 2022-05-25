@@ -23,3 +23,7 @@ XplCLI/x64/Debug/XplCLI.vcxproj.FileListAbsolute.txt
 *.vcxproj
 *.filters
 *.user
+*.vsidx
+*.lock
+*.enc
+*.txt

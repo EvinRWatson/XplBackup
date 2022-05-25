@@ -10,6 +10,10 @@ bool EvaluateArgument(char* argv)
     if (strcmp(argv, "add") == 0)
     {
         std::cout << "Adding" << std::endl;
+        std::vector<std::vector<std::string>> content = ReadEntriesFile();
+        std::vector<std::string> record = { {} };
+
+        AddEntriesRecord(content, record);
     }
     else if(strcmp(argv, "remove") == 0)
     {

@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include "ErrorFunc.h"
 
 std::vector<std::vector<std::string>> ReadEntriesFile()
 {
@@ -27,7 +28,7 @@ std::vector<std::vector<std::string>> ReadEntriesFile()
 		}
 	}
 	else
-		std::cout << "Could not open the file\n";
+		DisplayFileError();
 
 	return content;
 }
