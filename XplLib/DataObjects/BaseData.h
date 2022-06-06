@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-class Data
+class BaseData
 {
 	public:
 		std::string EntryNumber;

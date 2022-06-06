@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
-#include "Data.h"
+#include "BaseData.h"
 
-class LocalData : public Data
+class LocalData : public BaseData
 {
 	public:
 		std::string SourcePath;
@@ -13,12 +13,11 @@ class LocalData : public Data
 			Type = "local";
 		}
 
-		static LocalData ConvertEntryToLocalData(std::vector<std::string> entry)
+		LocalData(std::vector<std::string> entry)
 		{
-			LocalData localData;
-			localData.EntryNumber = entry[0];
-			localData.SourcePath = entry[2];
-			localData.DestinationPath = entry[3];
-			return localData;
+			EntryNumber = entry[0];
+			Type = entry[1];
+			SourcePath = entry[2];
+			DestinationPath = entry[3];
 		}
 };

@@ -3,22 +3,23 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <list>
 #include <sstream>
 #include "ErrorFunc.h"
 #include "DataObjects/LocalData.h"
 
 
-std::vector<Data> ConvertStringEntriesToDataObjects(std::vector<std::vector<std::string>> content)
+std::list<BaseData*> ConvertStringEntriesToDataObjects(std::vector<std::vector<std::string>> content)
 {
-	std::vector<Data> dataObjects;
+	std::list<BaseData*> dataObjects;
 
 	for (int i = 0; i < content.size(); i++)
 	{
 		std::string CurrentEntryType = content[i][1].c_str();
 		if (CurrentEntryType == "local")
 		{
-			LocalData localData = LocalData::ConvertEntryToLocalData(content[i]);
-			dataObjects.push_back(localData);
+			LocalData localData(content[i]);
+			dataObjects.push_back(&localData); //TODO, fix polymorphism
 		}
 	}
 
@@ -50,7 +51,7 @@ std::vector<std::vector<std::string>> ReadEntriesFile()
 	else
 		DisplayFileError();
 
-	std::vector<Data> Test = ConvertStringEntriesToDataObjects(content);
+	std::list<BaseData*> Test = ConvertStringEntriesToDataObjects(content);
 
 	return content;
 }
