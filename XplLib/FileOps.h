@@ -1,9 +1,29 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <sstream>
 #include "ErrorFunc.h"
+#include "DataObjects/LocalData.h"
+
+
+std::vector<Data> ConvertStringEntriesToDataObjects(std::vector<std::vector<std::string>> content)
+{
+	std::vector<Data> dataObjects;
+
+	for (int i = 0; i < content.size(); i++)
+	{
+		std::string CurrentEntryType = content[i][1].c_str();
+		if (CurrentEntryType == "local")
+		{
+			LocalData localData = LocalData::ConvertEntryToLocalData(content[i]);
+			dataObjects.push_back(localData);
+		}
+	}
+
+	return dataObjects;
+}
 
 std::vector<std::vector<std::string>> ReadEntriesFile()
 {
@@ -30,8 +50,11 @@ std::vector<std::vector<std::string>> ReadEntriesFile()
 	else
 		DisplayFileError();
 
+	std::vector<Data> Test = ConvertStringEntriesToDataObjects(content);
+
 	return content;
 }
+
 
 void PrintEntriesFile(std::vector<std::vector<std::string>> content)
 {

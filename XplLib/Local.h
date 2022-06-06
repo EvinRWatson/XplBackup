@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <filesystem>
@@ -10,5 +11,12 @@ void CopyFiles(std::string SourcePath, std::string DestinationPath)
 	std::string Message = "Copying " + SourcePath + " to " + DestinationPath;
 	std::cout << Message << std::endl;
 
-	fs::copy(SourcePath, DestinationPath, fs::copy_options::recursive);
+	try 
+	{
+		fs::copy(SourcePath, DestinationPath, fs::copy_options::recursive);
+	}
+	catch (std::exception& ex)
+	{
+		std::cout << ex.what() << std::endl;
+	}
 }
