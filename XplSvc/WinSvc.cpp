@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "..\XplLib\Local.h"
 #include "..\XplLib\FileOps.h"
 #include "..\XplLib\ErrorFunc.h"
 
@@ -9,12 +8,13 @@ void ExecuteEntries(std::vector<std::vector<std::string>> content)
 {
 	for (int i = 0; i < content.size(); i++)
 	{
-		std::string RecordType = content[i][1];
+		std::vector<std::string> currentEntry = content[i];
+		std::string RecordType = currentEntry[1];
+
 		if (RecordType.compare("local") == 0)
 		{
-			std::string SourcePath = content[i][2];
-			std::string DestinationPath = content[i][3];
-			CopyFiles(SourcePath, DestinationPath);
+			LocalData CurrentRecord(currentEntry);
+			CurrentRecord.Run();
 		}
 	}
 }
